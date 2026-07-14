@@ -1,5 +1,5 @@
 import api from "./api";
-import { Task, CreateTaskRequest } from "@/types/task";
+import { Task, CreateTaskRequest } from "@/types/Task";
 
 
 
