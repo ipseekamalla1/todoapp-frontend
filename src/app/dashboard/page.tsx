@@ -16,7 +16,7 @@ const demoTasks: Task[] = [
     title: "Learn Spring Boot",
     description: "Complete JWT authentication setup",
     dueDate: "2026-07-20",
-    status: Status.IN_PROGRESS,
+    status: Status.PENDING,
     priority: Priority.HIGH,
     createdAt: "2026-07-13",
     userId: 1,
@@ -28,7 +28,7 @@ const demoTasks: Task[] = [
     title: "Build Next.js UI",
     description: "Create dashboard components",
     dueDate: "2026-07-25",
-    status: Status.COMPLETED,
+    status: Status.DONE,
     priority: Priority.MEDIUM,
     createdAt: "2026-07-13",
     userId: 1,
@@ -166,7 +166,7 @@ export default function DashboardPage() {
           >
 
             <p className="text-slate-600">
-              Completed
+              DONE
             </p>
 
 
@@ -193,7 +193,7 @@ export default function DashboardPage() {
           >
 
             <p className="text-slate-600">
-              In Progress
+              
             </p>
 
 

@@ -17,7 +17,7 @@ const demoTasks: Task[] = [
     description:
       "Finish REST APIs and JWT authentication",
     dueDate: "2026-07-20",
-    status: Status.COMPLETED,
+    status: Status.DONE,
     priority: Priority.HIGH,
     createdAt: "2026-07-13",
     userId: 1,
@@ -30,7 +30,7 @@ const demoTasks: Task[] = [
     description:
       "Build UI pages using Tailwind CSS",
     dueDate: "2026-07-25",
-    status: Status.IN_PROGRESS,
+    status: Status.PENDING,
     priority: Priority.MEDIUM,
     createdAt: "2026-07-13",
     userId: 1,
@@ -205,7 +205,7 @@ export default function TasksPage() {
             border-slate-200
             "
           >
-            Completed
+            DONE
           </button>
 
 

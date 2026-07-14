@@ -6,8 +6,8 @@ export enum Gender {
 
 export enum Status {
   TODO = "TODO",
-  IN_PROGRESS = "PENDING",
-  COMPLETED = "DONE",
+  PENDING = "PENDING",
+  DONE = "DONE",
 }
 
 

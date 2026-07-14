@@ -159,9 +159,9 @@ export default function CreateTaskPage() {
 
                   <option value="TODO">Todo</option>
 
-                  <option value="IN_PROGRESS">In Progress</option>
+                  <option value="PENDING">PENDING</option>
 
-                  <option value="COMPLETED">Completed</option>
+                  <option value="DONE">DONE</option>
                 </select>
               </div>
             </div>
