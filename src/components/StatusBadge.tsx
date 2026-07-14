@@ -13,8 +13,8 @@ export default function StatusBadge({
 
   const styles = {
     TODO: "bg-accent",
-    IN_PROGRESS: "bg-primary",
-    COMPLETED: "bg-secondary",
+    PENDING: "bg-primary",
+    DONE: "bg-secondary",
   };
 
 

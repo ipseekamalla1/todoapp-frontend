@@ -1,27 +1,41 @@
-interface CardProps {
-  children: React.ReactNode;
-  className?: string;
+interface InputProps {
+  label?: string;
+  placeholder?: string;
+  name: string;
+  type?: string;
 }
 
-
-export default function Card({
-  children,
-  className = "",
-}: CardProps) {
-
+export default function Input({
+  label,
+  placeholder,
+  name,
+  type = "text",
+}: InputProps) {
   return (
-    <div
-      className={`
-        bg-card
-        rounded-2xl
-        shadow-sm
+    <div className="flex flex-col gap-2">
+      {label && (
+        <label className="text-sm font-medium text-foreground">
+          {label}
+        </label>
+      )}
+
+      <input
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        className="
+        rounded-xl
         border
-        border-slate-100
-        p-6
-        ${className}
-      `}
-    >
-      {children}
+        border-slate-200
+        bg-white
+        px-4
+        py-3
+        text-foreground
+        outline-none
+        focus:ring-2
+        focus:ring-primary
+        "
+      />
     </div>
   );
 }
