@@ -1,71 +1,64 @@
-import Link from "next/link";
+'use client'
 
-import Card from "@/components/Card";
-import Button from "@/components/Button";
-import TaskCard from "@/components/TaskCard";
+import Link from 'next/link'
 
-import { Status, Priority } from "@/types/enums";
-import { Task } from "@/types/Task";
+import Card from '@/components/Card'
+import Button from '@/components/Button'
+import TaskCard from '@/components/TaskCard'
 
-
+import { Status, Priority } from '@/types/enums'
+import { Task } from '@/types/Task'
+import { User } from '@/types/User'
 
 const demoTasks: Task[] = [
-
   {
     id: 1,
-    title: "Learn Spring Boot",
-    description: "Complete JWT authentication setup",
-    dueDate: "2026-07-20",
+    title: 'Learn Spring Boot',
+    description: 'Complete JWT authentication setup',
+    dueDate: '2026-07-20',
     status: Status.PENDING,
     priority: Priority.HIGH,
-    createdAt: "2026-07-13",
-    userId: 1,
+    createdAt: '2026-07-13',
+    userId: 1
   },
-
 
   {
     id: 2,
-    title: "Build Next.js UI",
-    description: "Create dashboard components",
-    dueDate: "2026-07-25",
+    title: 'Build Next.js UI',
+    description: 'Create dashboard components',
+    dueDate: '2026-07-25',
     status: Status.DONE,
     priority: Priority.MEDIUM,
-    createdAt: "2026-07-13",
-    userId: 1,
-  },
+    createdAt: '2026-07-13',
+    userId: 1
+  }
+]
 
-
-];
-
-
-
-export default function DashboardPage() {
-
+export default function DashboardPage () {
+  const user: User | null =
+    typeof window !== 'undefined'
+      ? JSON.parse(localStorage.getItem('user') || 'null')
+      : null
 
   return (
-
     <main
-      className="
+      className='
       min-h-screen
       bg-background
       px-6
       py-10
-      "
+      '
     >
-
-
       <div
-        className="
+        className='
         max-w-6xl
         mx-auto
-        "
+        '
       >
-
-
         {/* Header */}
 
         <div
-          className="
+          className='
           flex
           flex-col
           md:flex-row
@@ -73,231 +66,132 @@ export default function DashboardPage() {
           items-start
           md:items-center
           gap-4
-          "
+          '
         >
-
-
           <div>
-
             <h1
-              className="
+              className='
               text-4xl
               font-bold
               text-foreground
-              "
+              '
             >
-              Welcome back 👋
+              Welcome {user?.firstName || 'back'} 👋
             </h1>
 
-
             <p
-              className="
+              className='
               mt-2
               text-slate-500
-              "
+              '
             >
               Manage your tasks and stay productive.
             </p>
-
           </div>
 
-
-
-
-
-          <Link href="/tasks/create">
-
-            <Button>
-              + Create Task
-            </Button>
-
+          <Link href='/tasks/create'>
+            <Button>+ Create Task</Button>
           </Link>
-
-
-
         </div>
-
-
-
-
-
-
 
         {/* Statistics */}
 
-
         <section
-          className="
+          className='
           mt-10
           grid
           md:grid-cols-3
           gap-6
-          "
+          '
         >
-
-
-
           <Card>
-
-            <p className="text-slate-500">
-              Total Tasks
-            </p>
-
+            <p className='text-slate-500'>Total Tasks</p>
 
             <h2
-              className="
+              className='
               mt-3
               text-4xl
               font-bold
               text-foreground
-              "
+              '
             >
               12
             </h2>
-
           </Card>
 
-
-
-
-
-          <Card
-            className="bg-secondary"
-          >
-
-            <p className="text-slate-600">
-              DONE
-            </p>
-
+          <Card className='bg-secondary'>
+            <p className='text-slate-600'>DONE</p>
 
             <h2
-              className="
+              className='
               mt-3
               text-4xl
               font-bold
-              "
+              '
             >
               5
             </h2>
-
-
           </Card>
 
-
-
-
-
-
-          <Card
-            className="bg-accent"
-          >
-
-            <p className="text-slate-600">
-              
-            </p>
-
+          <Card className='bg-accent'>
+            <p className='text-slate-600'>PENDING</p>
 
             <h2
-              className="
+              className='
               mt-3
               text-4xl
               font-bold
-              "
+              '
             >
               7
             </h2>
-
-
           </Card>
-
-
-
-
         </section>
-
-
-
-
-
-
 
         {/* Recent Tasks */}
 
-
-        <section className="mt-12">
-
-
+        <section className='mt-12'>
           <div
-            className="
+            className='
             flex
             justify-between
             items-center
             mb-6
-            "
+            '
           >
-
             <h2
-              className="
+              className='
               text-2xl
               font-bold
               text-foreground
-              "
+              '
             >
               Recent Tasks
             </h2>
 
-
             <Link
-              href="/tasks"
-              className="
+              href='/tasks'
+              className='
               text-slate-600
               hover:underline
-              "
+              '
             >
               View all
             </Link>
-
-
           </div>
-
-
-
-
 
           <div
-            className="
+            className='
             grid
             gap-5
-            "
+            '
           >
-
-
-            {
-              demoTasks.map((task)=>(
-                
-                <TaskCard
-                  key={task.id}
-                  task={task}
-                />
-
-              ))
-            }
-
-
+            {demoTasks.map(task => (
+              <TaskCard key={task.id} task={task} />
+            ))}
           </div>
-
-
-
         </section>
-
-
-
-
       </div>
-
-
     </main>
-
-  );
-
+  )
 }

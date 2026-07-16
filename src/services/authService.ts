@@ -1,16 +1,32 @@
 import api from "@/lib/axios";
+
 import { setToken, removeToken } from "@/lib/auth";
 
-import { LoginRequest, RegisterRequest } from "@/types/auth";
+import { LoginRequest, RegisterRequest, AuthResponse } from "@/types/auth";
 
-export async function login(data: LoginRequest): Promise<string> {
-  const response = await api.post<string>("/auth/login", data);
+export async function login(data: LoginRequest): Promise<AuthResponse> {
+  const response = await api.post<AuthResponse>("/auth/login", data);
 
-  const token = response.data;
+  const userData = response.data;
 
-  setToken(token);
+  // save JWT
+  setToken(userData.token);
 
-  return token;
+  // save user information
+  localStorage.setItem(
+    "user",
+    JSON.stringify({
+      id: userData.id,
+
+      firstName: userData.firstName,
+
+      lastName: userData.lastName,
+
+      email: userData.email,
+    }),
+  );
+
+  return userData;
 }
 
 export async function register(data: RegisterRequest) {
@@ -21,4 +37,6 @@ export async function register(data: RegisterRequest) {
 
 export function logout(): void {
   removeToken();
+
+  localStorage.removeItem("user");
 }
