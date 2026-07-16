@@ -1,60 +1,77 @@
+"use client";
+
 import { Task } from "@/types/Task";
-import StatusBadge from "./StatusBadge";
 
-
-interface TaskCardProps {
+interface Props {
   task: Task;
+  onDelete: (id:number)=>void;
+  onEdit: (task:Task)=>void;
 }
 
+export default function TaskCard({task,onDelete,onEdit}:Props){
 
-export default function TaskCard({
-  task,
-}: TaskCardProps) {
+return (
 
-  return (
-    <div
-      className="
-        bg-card
-        rounded-2xl
-        border
-        border-slate-100
-        shadow-sm
-        p-5
-      "
-    >
-
-      <div className="flex justify-between items-start">
-
-        <h3 className="text-xl font-semibold text-foreground">
-          {task.title}
-        </h3>
+<div className="bg-white rounded-2xl p-5 shadow border border-slate-200 flex justify-between items-center">
 
 
-        <StatusBadge status={task.status}/>
+<div>
 
-      </div>
-
-
-      <p className="mt-3 text-slate-500">
-        {task.description}
-      </p>
+<h2 className="text-xl font-bold text-slate-800">
+{task.title}
+</h2>
 
 
-      <div className="mt-4 flex justify-between text-sm">
-
-        <span>
-          Priority: {task.priority}
-        </span>
+<p className="text-slate-500 mt-2">
+{task.description}
+</p>
 
 
-        {task.dueDate && (
-          <span>
-            Due: {task.dueDate}
-          </span>
-        )}
+<div className="flex gap-2 mt-3">
 
-      </div>
+<span className="px-3 py-1 rounded-full bg-blue-100 text-sm">
+{task.status}
+</span>
 
-    </div>
-  );
+
+<span className="px-3 py-1 rounded-full bg-green-100 text-sm">
+{task.priority}
+</span>
+
+</div>
+
+
+</div>
+
+
+
+
+<div className="flex gap-2">
+
+
+<button
+onClick={()=>onEdit(task)}
+className="px-4 py-2 rounded-xl bg-primary"
+>
+Edit
+</button>
+
+
+
+<button
+onClick={()=>onDelete(task.id)}
+className="px-4 py-2 rounded-xl bg-red-500 text-white"
+>
+Delete
+</button>
+
+
+</div>
+
+
+
+</div>
+
+);
+
 }
