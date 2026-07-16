@@ -1,18 +1,24 @@
-import api from "./api";
-import { LoginRequest, AuthResponse } from "@/types/auth";
+import api from "@/lib/axios";
+import { setToken, removeToken } from "@/lib/auth";
 
+import { LoginRequest, RegisterRequest } from "@/types/auth";
 
-export const loginUser = async(
-    data:LoginRequest
-):Promise<AuthResponse>=>{
+export async function login(data: LoginRequest): Promise<string> {
+  const response = await api.post<string>("/auth/login", data);
 
+  const token = response.data;
 
-    const response = await api.post(
-        "/auth/login",
-        data
-    );
+  setToken(token);
 
+  return token;
+}
 
-    return response.data;
+export async function register(data: RegisterRequest) {
+  const response = await api.post("/users", data);
 
-};
+  return response.data;
+}
+
+export function logout(): void {
+  removeToken();
+}

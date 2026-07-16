@@ -1,28 +1,28 @@
-interface InputProps {
+import React from "react";
+
+
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  placeholder?: string;
-  name: string;
-  type?: string;
 }
+
 
 export default function Input({
   label,
-  placeholder,
-  name,
-  type = "text",
+  ...props
 }: InputProps) {
+
   return (
     <div className="flex flex-col gap-2">
+
       {label && (
         <label className="text-sm font-medium text-foreground">
           {label}
         </label>
       )}
 
+
       <input
-        type={type}
-        name={name}
-        placeholder={placeholder}
+        {...props}
         className="
         rounded-xl
         border
@@ -36,6 +36,7 @@ export default function Input({
         focus:ring-primary
         "
       />
+
     </div>
   );
 }
