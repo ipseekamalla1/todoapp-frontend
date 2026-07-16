@@ -4,8 +4,8 @@ import { Task } from "@/types/Task";
 
 interface Props {
   task: Task;
-  onDelete: (id:number)=>void;
-  onEdit: (task:Task)=>void;
+  onDelete?: (id:number)=>void;
+  onEdit?: (task:Task)=>void;
 }
 
 export default function TaskCard({task,onDelete,onEdit}:Props){
@@ -38,6 +38,7 @@ return (
 {task.priority}
 </span>
 
+
 </div>
 
 
@@ -49,6 +50,9 @@ return (
 <div className="flex gap-2">
 
 
+{
+onEdit && (
+
 <button
 onClick={()=>onEdit(task)}
 className="px-4 py-2 rounded-xl bg-primary"
@@ -56,7 +60,15 @@ className="px-4 py-2 rounded-xl bg-primary"
 Edit
 </button>
 
+)
+}
 
+
+
+
+
+{
+onDelete && (
 
 <button
 onClick={()=>onDelete(task.id)}
@@ -64,6 +76,10 @@ className="px-4 py-2 rounded-xl bg-red-500 text-white"
 >
 Delete
 </button>
+
+)
+}
+
 
 
 </div>
