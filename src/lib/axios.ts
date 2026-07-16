@@ -16,8 +16,18 @@ api.interceptors.request.use(
     const token = getToken();
 
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+
+  console.log("JWT TOKEN SENT:", token);
+
+  config.headers.Authorization =
+      `Bearer ${token}`;
+
+}
+else {
+
+  console.log("NO TOKEN FOUND");
+
+}
 
     return config;
   },
